@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel ='stylesheet' href='./style/index.css'/>
+	<title>Weather app</title>
+</head>
+<body>
+  <div class ='box'>
+  	<div class ='wave-box-1'></div>
+  	<div class ='wave-box-2'></div>
+  	<div class ='wave-box-3'></div>
+  	<div class ='tempStatus'>
+
+  	</div>
+  	<div class ='location'>
+  		 <div class='icon'></div>
+  		 <h3>Kanpur,Ind</h3>
+  	</div>
+  	<div class='dates'>
+  		 <h4>WED|OCT 23|10:49</h4>
+  	</div>
+  	<div class ='temperature'>
+  		<h2>{%temperatures%}<sup>o</sup>C</h2>
+  	</div>
+  	<div class ='minandmaxtemp'>
+  		
+  	</div>
+  </div>
+</body>
+<script>
+	let currentDay;
+	let currentMonth;
+	let currentTime;
+	let dayStatus;
+	 const today = document.querySelector('.dates');
+	 
+   const getDays = ()=>{
+     const dayName = new Array(7);
+     dayName[0]='Sunday';
+     dayName[1]='Monday';
+     dayName[2]='Tuesday';
+     dayName[3]='Wednesday';
+     dayName[4]='Thursday';
+     dayName[5]='Friday';
+     dayName[6]='Saturday';
+
+     const day = new Date();
+     currentDay = dayName[day.getDay()];
+     console.log(currentDay);
+     console.log(day.getMonth());
+
+     // months name 
+     const month =['January',"February","March","April","May",'June',"July","August","September","October","November","December"];
+     console.log(day.getMonth());
+
+     currentMonth = month[day.getMonth()];
+     console.log(currentMonth);
+
+     var hour = day.getHours();
+     var minutes = day.getMinutes();
+
+    if(hour > 12){
+    	 hour -=12;
+    }
+    if(minutes < 10){
+    	minutes +=`0${minutes}`;
+    };
+   
+    dayStatus = hour >= 12 ? "Pm" : "Am";
+
+     console.log(minutes);
+     currentTime =`${hour}:${minutes}`;
+
+     today.innerHTML = `${currentDay}|${currentMonth}|${currentTime} ${dayStatus}`;
+   };
+
+   getDays();
+</script>
+</html>
